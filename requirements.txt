@@ -1,0 +1,14 @@
+Flask
+Flask-Cors
+Pillow
+requests
+PyJWT
+Werkzeug
+reportlab
+python-docx
+python-dotenv
+pypdf
+pymupdf
+google-auth
+google-auth-oauthlib
+google-api-python-client
