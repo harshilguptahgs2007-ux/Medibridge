@@ -1,4 +1,29 @@
+# Environment variables and secrets
 .env
-routes/.env
-routes/token.json
-routes/credentials.json   
+*.env
+backend/.env
+backend/routes/.env
+backend/routes/token.json
+backend/routes/credentials.json
+token.json
+credentials.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+
+# IDE and OS
+.idea/
+.vscode/
+*.swp
+*.exe
+.DS_Store
+Thumbs.db

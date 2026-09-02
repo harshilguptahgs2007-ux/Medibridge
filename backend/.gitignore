@@ -1,0 +1,10 @@
+.env
+routes/.env
+routes/token.json
+routes/credentials.json
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.zip
