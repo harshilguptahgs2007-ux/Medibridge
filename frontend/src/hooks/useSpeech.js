@@ -1,19 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-/**
- * useSpeech — reusable bilingual Text-to-Speech hook
- *
- * Uses the browser SpeechSynthesis API.
- * Supports en-IN and hi-IN voices.
- * Prevents overlapping speech.
- * Auto-stops on unmount / page leave.
- */
+
 export const useSpeech = () => {
   const [speaking, setSpeaking] = useState(false);
   const [currentLang, setCurrentLang] = useState(null);
   const utteranceRef = useRef(null);
 
-  // Cancel any ongoing speech
+  
   const stop = useCallback(() => {
     if (typeof window !== "undefined" && window.speechSynthesis) {
       window.speechSynthesis.cancel();
@@ -23,13 +16,11 @@ export const useSpeech = () => {
     utteranceRef.current = null;
   }, []);
 
-  // Find the best matching voice for a language tag
   const findVoice = useCallback((langTag) => {
     if (!window.speechSynthesis) return null;
 
     const voices = window.speechSynthesis.getVoices();
 
-    // Prefer Microsoft Kalpana for Hindi
     if (langTag === "hi-IN") {
         const kalpana = voices.find(
             v => v.name.toLowerCase().includes("kalpana")
@@ -48,11 +39,7 @@ export const useSpeech = () => {
     return voices.find(v => v.lang.startsWith(prefix)) || null;
 }, []);
 
-  /**
-   * speak(text, lang)
-   * @param {string} text  — the text to read aloud
-   * @param {"en"|"hi"} lang — "en" for English, "hi" for Hindi
-   */
+
   const speak = useCallback(
     (text, lang = "en") => {
       if (!text || !text.trim()) return;
@@ -103,9 +90,7 @@ export const useSpeech = () => {
     [findVoice]
   );
 
-  /**
-   * Toggle speech: if currently speaking the same lang, stop; otherwise start.
-   */
+  
   const toggle = useCallback(
     (text, lang = "en") => {
       if (speaking && currentLang === lang) {
@@ -117,7 +102,6 @@ export const useSpeech = () => {
     [speaking, currentLang, stop, speak]
   );
 
-  // Auto-stop on unmount
   useEffect(() => {
     return () => {
       if (typeof window !== "undefined" && window.speechSynthesis) {
@@ -126,7 +110,7 @@ export const useSpeech = () => {
     };
   }, []);
 
-  // Preload voices (some browsers load them asynchronously)
+
   useEffect(() => {
     if (typeof window !== "undefined" && window.speechSynthesis) {
       window.speechSynthesis.getVoices();
