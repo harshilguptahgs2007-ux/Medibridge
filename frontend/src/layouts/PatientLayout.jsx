@@ -103,8 +103,6 @@ export const PatientLayout = () => {
         </header>
 
         <Outlet />
-
-        {/* Global Floating AI Health Assistant */}
         <AiHealthBot />
       </main>
     </div>
