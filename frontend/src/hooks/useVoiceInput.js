@@ -1,10 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
-/**
- * useVoiceInput — Web Speech API Speech-to-Text hook
- * Allows patients and doctors to speak their symptoms, clinical notes, or queries
- * in English or Hindi (hi-IN / en-IN) with live transcript feedback.
- */
 export const useVoiceInput = ({ onTranscript, lang = "en-IN" } = {}) => {
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState("");
