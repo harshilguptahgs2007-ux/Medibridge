@@ -9,7 +9,6 @@ export const ProtectedRoute = ({ allowedRoles }) => {
   }
 
   if (allowedRoles && !allowedRoles.includes(user?.role)) {
-    // Redirect to respective dashboard if role is incorrect
     return <Navigate to={user?.role === "doctor" ? "/doctor" : "/patient"} replace />;
   }
 
